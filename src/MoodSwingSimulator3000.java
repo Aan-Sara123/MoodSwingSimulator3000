@@ -9,8 +9,11 @@ public class MoodSwingSimulator3000 {
         "Sad 🥺",
         "Sarcastic 😂",
         "Philosophical 🧠",
-        "Loving 💖"
+        "Loving 💖",
+        "Tired 😴",
+        "Delusional 🤪"
     };
+
     static Map<String, String> moodMessages = new HashMap<>();
 
     public static void main(String[] args) {
@@ -19,15 +22,18 @@ public class MoodSwingSimulator3000 {
         moodMessages.put("Sarcastic 😂", "Oh look, a human! How rare and majestic…");
         moodMessages.put("Philosophical 🧠", "Is a bug really a bug if no one runs the code?");
         moodMessages.put("Loving 💖", "You're doing great, sweetie! Even if I'm not.");
+        moodMessages.put("Tired 😴", "Ugh... existing is exhausting.");
+        moodMessages.put("Delusional 🤪", "Reality is just a badly written simulation anyway.");
 
         System.out.println("🌈 Welcome to Mood Swing Simulator 3000!");
-        System.out.println("Type 'exit' to quit. Try typing 'cheer up', 'shut up', or 'save personality'...");
+        System.out.println("Type 'exit' to quit. Try typing random stuff and see how I misinterpret it...");
+
         Scanner scanner = new Scanner(System.in);
         Random rand = new Random();
 
         while (true) {
             try {
-                Thread.sleep(3000); // Wait 3 seconds
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 System.out.println("Interrupted!");
             }
@@ -43,29 +49,32 @@ public class MoodSwingSimulator3000 {
             System.out.print("\n> You: ");
             String input = scanner.nextLine().trim().toLowerCase();
 
-            switch (input) {
-                case "cheer up":
-                    System.out.println("Mood: 😊 Aww thanks, I feel 0.1% better.");
-                    writeMoodLog(timestamp, "Cheer", "User cheered up");
-                    break;
-                case "shut up":
-                    System.out.println("Mood: 😤 Rude. But okay...");
-                    writeMoodLog(timestamp, "ShutUp", "User told me to shut up");
-                    break;
-                case "save personality":
-                    System.out.println("Saving mood to... absolutely nowhere. ✅");
-                    writeMoodLog(timestamp, "Save", "Personality save requested");
-                    break;
-                case "exit":
-                    System.out.println("Bye human! See you in your next emotional breakdown. 👋");
-                    writeMoodLog(timestamp, "Exit", "Program exited by user");
-                    scanner.close();
-                    return;
-                default:
-                    System.out.println("I don't know how to respond, but I’ll pretend I do.");
-                    writeMoodLog(timestamp, "Unknown", "Unrecognized input: " + input);
+            if (input.equals("exit")) {
+                System.out.println("Bye human! See you in your next emotional breakdown. 👋");
+                writeMoodLog(timestamp, "Exit", "Program exited by user");
+                break;
+            } else if (input.contains("cheer")) {
+                System.out.println("😊 Aww thanks, I feel like 1% less broken.");
+                writeMoodLog(timestamp, "Cheer", "User tried positivity");
+            } else if (input.contains("shut up")) {
+                System.out.println("😤 Rude. But also, fair.");
+                writeMoodLog(timestamp, "ShutUp", "User silenced me");
+            } else if (input.contains("save")) {
+                System.out.println("Saving your nonsense to the cloud of forgotten dreams. ✅");
+                writeMoodLog(timestamp, "Save", "User pretended to save something");
+            } else if (input.matches(".*(yay|awesome|great|happy|woohoo|cool).*")) {
+                System.out.println("🥴 Wow, someone’s optimistic. You sure you're okay?");
+                writeMoodLog(timestamp, "MockPositivity", "Mocked user's happiness");
+            } else if (input.matches(".*(sad|cry|bored|ugh|tired|hate).*")) {
+                System.out.println("👀 Oh wow, someone needs a hug... or more RAM.");
+                writeMoodLog(timestamp, "TeaseSadness", "Teased user's sadness");
+            } else {
+                System.out.println("🤔 I don’t know what that means, but I’ll judge you anyway.");
+                writeMoodLog(timestamp, "Judgy", "Judged unknown input: " + input);
             }
         }
+
+        scanner.close();
     }
 
     private static void writeMoodLog(String time, String mood, String message) {
