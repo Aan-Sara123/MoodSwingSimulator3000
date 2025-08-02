@@ -161,11 +161,12 @@ public class MoodSwingWebMockerGUI {
                 switch (currentMood) {
                     case NICE -> reply = niceReplies[random.nextInt(niceReplies.length)];
                     case WEIRD -> reply = weirdReplies[random.nextInt(weirdReplies.length)];
-                    default -> {
+                    case MOCK -> {
                         reply = mockInsults[random.nextInt(mockInsults.length)];
                         insultCount++;
                         insultCounterLabel.setText("Insults Delivered: " + insultCount + " 💥");
                     }
+                    default -> reply = "Mood error. Please re-mock me. 💔";
                 }
                 addChatBubble("Bot: " + reply, false);
             }
@@ -206,38 +207,34 @@ public class MoodSwingWebMockerGUI {
             protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-    
-                // Set bubble color
                 g2.setColor(getBackground());
-    
-                // Draw rounded rectangle bubble
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
             }
         };
-    
         bubble.setLayout(new BorderLayout());
-        bubble.setOpaque(false); // So paintComponent works correctly
+        bubble.setOpaque(false);
         bubble.setBackground(user ? new Color(200, 255, 200) : new Color(255, 220, 250));
         bubble.setBorder(BorderFactory.createEmptyBorder(12, 18, 12, 18));
-    
+
         JLabel label = new JLabel("<html><body style='width: 360px'>" + message + "</body></html>");
         label.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 15));
         label.setForeground(Color.DARK_GRAY);
-    
+
         bubble.add(label, BorderLayout.CENTER);
-    
+
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setOpaque(false);
         wrapper.add(bubble, user ? BorderLayout.EAST : BorderLayout.WEST);
-    
+
         chatPanel.add(wrapper);
         chatPanel.add(Box.createVerticalStrut(10));
         chatPanel.revalidate();
         chatPanel.repaint();
-    
+
         JScrollBar vertical = ((JScrollPane) chatPanel.getParent().getParent()).getVerticalScrollBar();
         vertical.setValue(vertical.getMaximum());
     }
+
     private static void switchMoodRandomly() {
         Mood[] moods = Mood.values();
         Mood newMood = moods[random.nextInt(moods.length)];
