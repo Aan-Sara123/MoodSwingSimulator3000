@@ -54,9 +54,9 @@
 
 ## Screenshots
 
-![insult me](image.png)
-![roast duel](image-1.png)
-![not nice](image-2.png)
+![insult me](image-3.png)
+![roast duel](image-4.png)
+![insult counter and mood switch](image-5.png)
 ## Customizing
 
 - **Response arrays**: Edit the arrays at the top of the source code (`mockInsults`, `niceReplies`, etc.) to add your own lines.
