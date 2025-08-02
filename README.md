@@ -1,6 +1,14 @@
+# Team Name - CodeLine
+
+# Team Members
+- Aan Sara Biju
+- Nandana Suresh
+
 # MoodSwingWebMockerGUI
 
 **MoodSwingWebMockerGUI** is a playful Java Swing application that lets you interact with a snarky and humorous chatbot. The bot will roast, compliment, or react weirdly to your messages—and will even taunt you if you stay silent!
+
+**It will make you lost your time..** 
 
 ## Features
 
@@ -48,10 +56,19 @@
 
 ![insult me](image.png)
 ![roast duel](image-1.png)
+![not nice](image-2.png)
 ## Customizing
 
 - **Response arrays**: Edit the arrays at the top of the source code (`mockInsults`, `niceReplies`, etc.) to add your own lines.
 - **UI Appearance**: All colors and fonts can be customized in the `createAndShowGUI()` method.
+
+## Contributions
+- Aan Sara Biju: 
+- Designed the interactive structure of the chatbot-like behavior.
+- Ensured code readability and basic error handling.
+- Nandana Suresh: 
+- Came up with the idea of simulating mood swings with random humorous or emotiions.
+- Created and maintained the moods and insult responses.
 
 ## Credits
 
